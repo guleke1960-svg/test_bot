@@ -145,8 +145,8 @@ async def q3_handler(message: Message, state: FSMContext):
     await state.clear()
 
     await state.clear()
-
-   async def main():
+    
+async def main():
     if not TOKEN:
         raise ValueError("BOT_TOKEN енгізілмеген")
 
