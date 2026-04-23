@@ -110,31 +110,47 @@ async def q3_handler(message: Message, state: FSMContext):
         await message.answer("Төмендегі жауаптардың бірін таңдаңыз 👇", reply_markup=q3_kb)
         return
 
+    # НӘТИЖЕ
     if score >= 2:
         result = (
-            "🔥 НӘТИЖЕ:\n\n"
-            "Сізге онлайн табыс бағыты қолайлы болуы мүмкін.\n"
-            "Сізде қызығушылық бар және бастап көруге потенциал бар."
+            "🔥 СІЗДІҢ НӘТИЖЕ:\n\n"
+            "Сізге онлайн табыс бағыты өте жақсы сәйкес келеді.\n\n"
+            "Қазір бастасаңыз, 7-14 күн ішінде алғашқы нәтижелер көруге болады 💸\n\n"
+            "Мен сізге нақты қалай бастау керегін жеке түсіндіріп бере аламын 👇"
         )
     else:
         result = (
-            "🌿 НӘТИЖЕ:\n\n"
-            "Сізге әзірге көбірек ақпарат пен түсіну керек сияқты.\n"
-            "Қаласаңыз, бәрін қарапайым тілмен түсіндіріп беремін."
+            "📊 СІЗДІҢ НӘТИЖЕ:\n\n"
+            "Сізде потенциал бар, бірақ бағытты дұрыс таңдау маңызды.\n\n"
+            "Мен сізге ең жеңіл бастау жолын көрсетіп бере аламын 👇"
         )
 
     await message.answer(result)
-    await message.answer("Толық ақпарат алу үшін маған жазыңыз: @guljan_username")
 
+    # CTA (жаздыру)
+    await message.answer(
+        "👇 Толық ақпарат алу үшін жазыңыз:\n"
+        "@guljan_username\n\n"
+        "Мен сізге тегін жоспар жасап берем 💬"
+    )
+
+    # URGENCY
+    await message.answer(
+        "⚠️ Қазір тек 10 адамға ғана жеке көмектесіп жатырмын.\n"
+        "Егер қызық болса — кеш болмай тұрғанда жазыңыз 👇\n\n"
+        "@guljan_username"
+    )
+
+    # ЛИД САҒАН КЕЛЕДІ
     user = message.from_user.username if message.from_user.username else "жоқ"
 
     if ADMIN_ID:
         await message.bot.send_message(
             ADMIN_ID,
-            f"🧪 Жаңа тест нәтижесі\n\nUser: @{user}\nScore: {score}/3"
+            f"🔥 Жаңа лид!\n\nUser: @{user}\nScore: {score}/3"
         )
 
-    await state.clear()
+    await state.clear())
 
 async def main():
     if not TOKEN:
