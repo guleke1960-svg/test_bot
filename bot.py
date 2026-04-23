@@ -128,10 +128,7 @@ async def q3_handler(message: Message, state: FSMContext):
     if ADMIN_ID:
         await message.bot.send_message(
             ADMIN_ID,
-            f"🧪 Жаңа тест нәтижесі\n\n"
-            f"User: @{user}\n"
-            f"Score: {score}/3\n"
-            f"Нәтиже мәтіні жіберілді."
+            f"🧪 Жаңа тест нәтижесі\n\nUser: @{user}\nScore: {score}/3"
         )
 
     await state.clear()
