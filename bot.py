@@ -151,6 +151,11 @@ async def main():
     dp.message.register(q3_handler, StateFilter(TestState.q3))
 
     await dp.start_polling(bot)
+    
+    await message.bot.send_message(
+        ADMIN_ID,
+        f"Жаңа лид:\n@{user}\nScore: {score}"
+)    
 
 if __name__ == "__main__":
     asyncio.run(main())
