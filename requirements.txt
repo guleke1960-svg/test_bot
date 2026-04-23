@@ -1,0 +1,3 @@
+[requirements.txt](https://github.com/user-attachments/files/27014780/requirements.txt)
+aiogram
+python-dotenv
