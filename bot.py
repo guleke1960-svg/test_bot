@@ -106,11 +106,12 @@ async def q3_handler(message: Message, state: FSMContext):
 
     if text == "A) Қызық":
         score += 1
-    elif text != "B) Сенімсізбін":
+    elif text == "B) Сенімсізбін":
+        pass
+    else:
         await message.answer("Төмендегі жауаптардың бірін таңдаңыз 👇", reply_markup=q3_kb)
         return
 
-    # НӘТИЖЕ
     if score >= 2:
         result = (
             "🔥 СІЗДІҢ НӘТИЖЕ:\n\n"
@@ -127,32 +128,25 @@ async def q3_handler(message: Message, state: FSMContext):
 
     await message.answer(result)
 
-    # CTA (жаздыру)
     await message.answer(
         "👇 Толық ақпарат алу үшін жазыңыз:\n"
         "@guljan_username\n\n"
         "Мен сізге тегін жоспар жасап берем 💬"
     )
 
-    # URGENCY
-    await message.answer(
-        "⚠️ Қазір тек 10 адамға ғана жеке көмектесіп жатырмын.\n"
-        "Егер қызық болса — кеш болмай тұрғанда жазыңыз 👇\n\n"
-        "@guljan_username"
-    )
-
-    # ЛИД САҒАН КЕЛЕДІ
     user = message.from_user.username if message.from_user.username else "жоқ"
 
     if ADMIN_ID:
         await message.bot.send_message(
             ADMIN_ID,
-            f"🔥 Жаңа лид!\n\nUser: @{user}\nScore: {score}/3"
+            f"Жаңа лид:\n@{user}\nScore: {score}"
         )
 
-    await state.clear())
+    await state.clear()
 
-async def main():
+    await state.clear()
+
+    async def main():
     if not TOKEN:
         raise ValueError("BOT_TOKEN енгізілмеген")
 
@@ -168,10 +162,5 @@ async def main():
 
     await dp.start_polling(bot)
     
-    await message.bot.send_message(
-        ADMIN_ID,
-        f"Жаңа лид:\n@{user}\nScore: {score}"
-)    
-
 if __name__ == "__main__":
     asyncio.run(main())
