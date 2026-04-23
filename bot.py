@@ -63,7 +63,10 @@ async def q1_handler(message: Message, state: FSMContext):
 
     if text == "A) Иә":
         score += 1
-    elif text != "B) Жоқ":
+    elif text == "B) Жоқ":
+        pass
+    else:
+        await message.answer(f"Сіз басқан жауап: {text}")
         await message.answer("Төмендегі жауаптардың бірін таңдаңыз 👇", reply_markup=q1_kb)
         return
 
