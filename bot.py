@@ -130,7 +130,7 @@ async def q3_handler(message: Message, state: FSMContext):
 
     await message.answer(
         "👇 Толық ақпарат алу үшін жазыңыз:\n"
-        "@guljan_username\n\n"
+        "@gulzhan_lashyn\n\n"
         "Мен сізге тегін жоспар жасап берем 💬"
     )
 
